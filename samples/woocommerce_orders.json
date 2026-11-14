@@ -1,0 +1,36 @@
+[
+  {
+    "id": 5521,
+    "number": "WC-5521",
+    "status": "processing",
+    "date_created": "2026-11-12T10:30:00",
+    "date_created_gmt": "2026-11-12T09:30:00",
+    "billing": {
+      "first_name": "Karel",
+      "last_name": "Dvořák",
+      "address_1": "Nádražní 101",
+      "address_2": "",
+      "city": "Ostrava",
+      "postcode": "70200",
+      "country": "CZ",
+      "email": "karel.dvorak@example.cz",
+      "phone": "+420 731 222 333"
+    },
+    "shipping": {
+      "first_name": "Karel",
+      "last_name": "Dvořák",
+      "address_1": "Nádražní 101",
+      "address_2": "",
+      "city": "Ostrava",
+      "postcode": "70200",
+      "country": "CZ"
+    },
+    "line_items": [
+      {"id": 1, "name": "Ponožky 3-pack", "sku": "PONOZKY-3PACK", "quantity": 3, "price": 149.0},
+      {"id": 2, "name": "Tričko černé M", "sku": "TRIKO-M-CERNE", "quantity": 1, "price": 349.0}
+    ],
+    "shipping_lines": [
+      {"id": 9, "method_title": "PPL Parcel CZ", "method_id": "flat_rate", "total": "99.00"}
+    ]
+  }
+]

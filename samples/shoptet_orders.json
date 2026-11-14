@@ -1,0 +1,53 @@
+{
+  "data": {
+    "orders": [
+      {
+        "code": "2026000101",
+        "creationTime": "2026-11-10T09:15:00+0100",
+        "email": "jan.novak@example.cz",
+        "phone": "+420 777 123 456",
+        "billingAddress": {
+          "fullName": "Jan Novák",
+          "street": "Dlouhá",
+          "houseNumber": "12",
+          "city": "Praha",
+          "zip": "110 00",
+          "countryCode": "CZ"
+        },
+        "deliveryAddress": {
+          "fullName": "Jan Novák",
+          "street": "Dlouhá",
+          "houseNumber": "12",
+          "city": "Praha",
+          "zip": "110 00",
+          "countryCode": "CZ"
+        },
+        "shipping": {"guid": "8f1c", "name": "Zásilkovna - výdejní místo"},
+        "items": [
+          {"itemType": "product", "code": "TRIKO-M-CERNE", "name": "Tričko černé M", "amount": "2.000", "itemPriceWithVat": "349.00"},
+          {"itemType": "product", "code": "HRNEK-BILY", "name": "Hrnek bílý", "amount": "1.000", "itemPriceWithVat": "199.00"},
+          {"itemType": "shipping", "code": null, "name": "Zásilkovna", "amount": "1.000", "itemPriceWithVat": "79.00"}
+        ]
+      },
+      {
+        "code": "2026000102",
+        "creationTime": "2026-11-11T14:02:00+0100",
+        "email": "petra.svobodova@example.cz",
+        "phone": "+420 608 555 111",
+        "billingAddress": {
+          "fullName": "Petra Svobodová",
+          "street": "Masarykova",
+          "houseNumber": "5",
+          "city": "Brno",
+          "zip": "602 00",
+          "countryCode": "CZ"
+        },
+        "deliveryAddress": null,
+        "shipping": {"guid": "1a2b", "name": "PPL - doručení na adresu"},
+        "items": [
+          {"itemType": "product", "code": "MIKINA-L-SEDA", "name": "Mikina šedá L", "amount": "1.000", "itemPriceWithVat": "899.00"}
+        ]
+      }
+    ]
+  }
+}

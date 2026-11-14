@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orders>
+  <order>
+    <external_id>XML-9001</external_id>
+    <created_at>2026-11-13T08:00:00+01:00</created_at>
+    <customer>
+      <name>Lucie Černá</name>
+      <email>lucie.cerna@example.cz</email>
+      <phone>+420 602 000 111</phone>
+      <street>Husova 3</street>
+      <city>Plzeň</city>
+      <zip>301 00</zip>
+      <country>CZ</country>
+    </customer>
+    <shipping>Zásilkovna</shipping>
+    <items>
+      <item><sku>HRNEK-BILY</sku><quantity>4</quantity><price>199.00</price></item>
+      <item><sku>PONOZKY-3PACK</sku><quantity>1</quantity><price>149.00</price></item>
+    </items>
+  </order>
+</orders>

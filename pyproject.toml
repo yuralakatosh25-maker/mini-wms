@@ -1,0 +1,23 @@
+[project]
+name = "mini-wms"
+version = "0.1.0"
+description = "Jednoduchý skladový systém: import objednávek z e-shopu, sklad, export pro dopravce."
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["wms/migrations"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "DJ"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra --strict-markers"
+filterwarnings = ["ignore:No directory at:UserWarning"]

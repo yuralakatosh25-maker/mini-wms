@@ -1,0 +1,34 @@
+services:
+  db:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${DB_NAME:-mini_wms}
+      MARIADB_USER: ${DB_USER:-mini_wms}
+      MARIADB_PASSWORD: ${DB_PASSWORD:?Nastavte DB_PASSWORD v .env}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?Nastavte DB_ROOT_PASSWORD v .env}
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  web:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_HOST: db
+      DB_PORT: "3306"
+    ports:
+      - "${WEB_PORT:-8000}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:

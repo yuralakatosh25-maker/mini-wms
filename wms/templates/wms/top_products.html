@@ -1,0 +1,80 @@
+{% extends "wms/base.html" %}
+{% block title %}Nejprodávanější produkty · mini-wms{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+  <div>
+    <h1 class="h3 mb-1">Nejprodávanější produkty</h1>
+    <p class="text-secondary mb-0">Potvrzené a odeslané objednávky, top 20 podle prodaných kusů.</p>
+  </div>
+  <div class="btn-group" role="group" aria-label="Období">
+    {% for value, label in periods %}
+      <a href="?days={{ value }}"
+         class="btn btn-sm {% if value == period %}btn-primary{% else %}btn-outline-primary{% endif %}">{{ label }}</a>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-sm-6 col-lg-3">
+    <div class="card shadow-sm"><div class="card-body">
+      <div class="text-secondary small">Prodáno kusů (top 20)</div>
+      <div class="fs-4 fw-semibold">{{ total_qty }}</div>
+    </div></div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="card shadow-sm"><div class="card-body">
+      <div class="text-secondary small">Tržba (top 20)</div>
+      <div class="fs-4 fw-semibold">{{ total_revenue|floatformat:2 }} Kč</div>
+    </div></div>
+  </div>
+</div>
+
+<div class="card shadow-sm">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="table-light">
+        <tr>
+          <th class="text-end" style="width:3rem">#</th>
+          <th>SKU</th>
+          <th>Název</th>
+          <th style="min-width:12rem">Prodáno</th>
+          <th class="text-end">Objednávek</th>
+          <th class="text-end">Tržba</th>
+          <th class="text-end">Skladem</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for row in rows %}
+        <tr>
+          <td class="text-end text-secondary">{{ forloop.counter }}</td>
+          <td><code>{{ row.product__sku }}</code></td>
+          <td>{{ row.product__name }}</td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1" role="progressbar" style="height:.5rem"
+                   aria-valuenow="{{ row.share_pct }}" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: {{ row.share_pct }}%"></div>
+              </div>
+              <span class="fw-semibold">{{ row.total_qty }}</span>
+            </div>
+          </td>
+          <td class="text-end">{{ row.order_count }}</td>
+          <td class="text-end">{{ row.revenue|floatformat:2 }} Kč</td>
+          <td class="text-end">
+            {% if row.product__stock == 0 %}
+              <span class="badge text-bg-danger">0</span>
+            {% elif row.product__stock <= 5 %}
+              <span class="badge text-bg-warning">{{ row.product__stock }}</span>
+            {% else %}
+              {{ row.product__stock }}
+            {% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="7" class="text-center text-secondary py-5">Za zvolené období zatím nic neprodáno.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
